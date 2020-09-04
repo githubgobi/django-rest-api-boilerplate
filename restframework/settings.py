@@ -25,7 +25,7 @@ SECRET_KEY = 'y+e2rx@&w%hf!pv6y7k9@7v*zzy_5r=8(&zir(=@wyoh+v)bw_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -38,8 +38,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
-    'myapi',
+    'rest_framework.authtoken',    
+    'rest_auth',
+    'myapi.apps.MyapiConfig',
+    # Registration are optional
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    # Social Login are optional
+
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+
+    # Swagger
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +146,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), "static")
+]
+
+REST_USE_JWT = True
+
+SITE_ID=1
