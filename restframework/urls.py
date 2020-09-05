@@ -3,9 +3,9 @@ from django.urls import path, include
 from django.conf.urls import url
 
 from django.views.generic import TemplateView, RedirectView
-# from rest_framework_swagger.views import get_swagger_view
+from rest_framework_swagger.views import get_swagger_view
 
-# schema_view = get_swagger_view(title='Django REST API Boilerplate', url='/a-different-path')
+schema_view = get_swagger_view(title='Django REST API Boilerplate')
 
 # from django.urls import path, include
 # from django.contrib.auth.models import User
@@ -60,7 +60,8 @@ class TwitterLogin(SocialLoginView):
 #     client_class = OAuth2Client
 
 urlpatterns = [
-    # url(r'^$', schema_view),
+    url(r'^$', schema_view),
+    # url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^admin/', admin.site.urls),
     path('api/v1/', include('myapi.urls')),
     path('api/v2/', include('myapi.urls')),
